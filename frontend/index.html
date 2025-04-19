@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #818cf8;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --accent: #f97316;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #cbd5e1;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Elements */
+        .bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            top: -250px;
+            left: -100px;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            right: -50px;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            bottom: 250px;
+            left: 50%;
+        }
+
+        /* Main Container */
+        .container {
+            width: 1100px;
+            height: 650px;
+            display: flex;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Left Panel - Illustration */
+        .illustration-panel {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illustration-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .illustration-content h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .illustration-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .illustration-image {
+            width: 80%;
+            max-width: 400px;
+            margin-top: 20px;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .feature span {
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        /* Right Panel - Forms */
+        .form-panel {
+            width: 500px;
+            background: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 24px 24px 0;
+        }
+
+        .form-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--gray);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            transition: color 0.3s;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 1px solid var(--gray-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: var(--light);
+        }
+
+        .input-field:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+            outline: none;
+        }
+
+        .input-field:focus + i {
+            color: var(--primary);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid var(--gray-light);
+            border-radius: 4px;
+            margin-right: 8px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .remember input[type="checkbox"]:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .remember input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .remember label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .forgot-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .btn {
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .social-login {
+            margin-top: 25px;
+        }
+
+        .social-text {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .social-text::before,
+        .social-text::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background-color: var(--gray-light);
+        }
+
+        .social-text::before {
+            left: 0;
+        }
+
+        .social-text::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--light);
+            border: 1px solid var(--gray-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        .social-btn.google i {
+            color: #ea4335;
+        }
+
+        .social-btn.facebook i {
+            color: #1877f2;
+        }
+
+        .social-btn.apple i {
+            color: #000000;
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .toggle-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .toggle-link a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Form Toggle Animation */
+        #loginForm, #signupForm {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            bottom: 40px;
+            opacity: 1;
+            transform: translateX(0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #signupForm {
+            opacity: 0;
+            transform: translateX(50px);
+            pointer-events: none;
+        }
+
+        #signupForm.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+        }
+
+        #loginForm.inactive {
+            opacity: 0;
+            transform: translateX(-50px);
+            pointer-events: none;
+        }
+
+        /* Terms Checkbox */
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .terms input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid var(--gray-light);
+            border-radius: 4px;
+            margin-right: 8px;
+            margin-top: 3px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .terms input[type="checkbox"]:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .terms input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .terms label {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--gray);
+        }
+
+        .terms a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Alert Styles */
+        .alert-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            animation: slideIn 0.3s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .alert i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .alert-success {
+            background-color: #ecfdf5;
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+
+        .alert-error {
+            background-color: #fef2f2;
+            color: var(--error);
+            border-left: 4px solid var(--error);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .container {
+                width: 90%;
+                height: auto;
+                flex-direction: column;
+            }
+
+            .illustration-panel {
+                display: none;
+            }
+
+            .form-panel {
+                width: 100%;
+                border-radius: 24px;
+                padding: 30px;
+            }
+
+            #loginForm, #signupForm {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .form-panel {
+                padding: 20px;
+            }
+
+            .social-buttons {
+                flex-wrap: wrap;
+            }
+
+            .social-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Shapes -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Left Panel - Illustration -->
+        <div class="illustration-panel">
+            <div class="illustration-content">
+                <h1>School Management System</h1>
+                <p>A comprehensive platform to manage your educational institution with ease and efficiency.</p>
+                
+                <!-- SVG Illustration -->
+                <svg class="illustration-image" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <style>
+                        .st0{fill:#FFFFFF;}
+                        .st1{fill:#F5F5F5;}
+                        .st2{fill:#EBEBEB;}
+                        .st3{fill:#4F46E5;}
+                        .st4{fill:#818CF8;}
+                        .st5{fill:#10B981;}
+                        .st6{fill:#F97316;}
+                    </style>
+                    <g>
+                        <!-- Building -->
+                        <rect x="100" y="100" width="300" height="200" rx="10" class="st1"/>
+                        <rect x="120" y="130" width="80" height="100" rx="5" class="st2"/>
+                        <rect x="210" y="130" width="80" height="100" rx="5" class="st2"/>
+                        <rect x="300" y="130" width="80" height="100" rx="5" class="st2"/>
+                        <rect x="150" y="300" width="200" height="20" rx="5" class="st2"/>
+                        
+                        <!-- Roof -->
+                        <path d="M80,100 L250,30 L420,100 Z" class="st3"/>
+                        
+                        <!-- Door -->
+                        <rect x="220" y="230" width="60" height="90" rx="5" class="st4"/>
+                        <circle cx="265" cy="270" r="5" class="st0"/>
+                        
+                        <!-- Windows -->
+                        <rect x="130" y="150" width="60" height="60" rx="5" class="st0"/>
+                        <rect x="220" y="150" width="60" height="60" rx="5" class="st0"/>
+                        <rect x="310" y="150" width="60" height="60" rx="5" class="st0"/>
+                        
+                        <!-- Window Details -->
+                        <line x1="160" y1="150" x2="160" y2="210" stroke="#EBEBEB" stroke-width="2"/>
+                        <line x1="130" y1="180" x2="190" y2="180" stroke="#EBEBEB" stroke-width="2"/>
+                        <line x1="250" y1="150" x2="250" y2="210" stroke="#EBEBEB" stroke-width="2"/>
+                        <line x1="220" y1="180" x2="280" y2="180" stroke="#EBEBEB" stroke-width="2"/>
+                        <line x1="340" y1="150" x2="340" y2="210" stroke="#EBEBEB" stroke-width="2"/>
+                        <line x1="310" y1="180" x2="370" y2="180" stroke="#EBEBEB" stroke-width="2"/>
+                        
+                        <!-- Flag -->
+                        <rect x="250" y="30" width="5" height="50" class="st0"/>
+                        <path d="M255,30 L285,40 L255,50 Z" class="st6"/>
+                        
+                        <!-- Trees -->
+                        <circle cx="80" cy="280" r="20" class="st5"/>
+                        <rect x="75" y="280" width="10" height="40" class="st2"/>
+                        <circle cx="420" cy="280" r="20" class="st5"/>
+                        <rect x="415" y="280" width="10" height="40" class="st2"/>
+                        
+                        <!-- Sun -->
+                        <circle cx="400" cy="60" r="25" class="st6"/>
+                        <line x1="400" y1="20" x2="400" y2="10" stroke="#F97316" stroke-width="3"/>
+                        <line x1="400" y1="110" x2="400" y2="100" stroke="#F97316" stroke-width="3"/>
+                        <line x1="360" y1="60" x2="350" y2="60" stroke="#F97316" stroke-width="3"/>
+                        <line x1="450" y1="60" x2="440" y2="60" stroke="#F97316" stroke-width="3"/>
+                        <line x1="370" y1="30" x2="360" y2="20" stroke="#F97316" stroke-width="3"/>
+                        <line x1="440" y1="100" x2="430" y2="90" stroke="#F97316" stroke-width="3"/>
+                        <line x1="370" y1="90" x2="360" y2="100" stroke="#F97316" stroke-width="3"/>
+                        <line x1="440" y1="20" x2="430" y2="30" stroke="#F97316" stroke-width="3"/>
+                    </g>
+                </svg>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-bolt"></i>
+                        <span>Fast</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Real-time</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Forms -->
+        <div class="form-panel">
+            <!-- Login Form -->
+            <div class="form-container" id="loginForm">
+                <div class="logo-container">
+                    <svg class="logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="50" height="50" rx="10" fill="#4f46e5"/>
+                        <path d="M15 15H35V35H15V15Z" stroke="white" stroke-width="2"/>
+                        <path d="M20 20H30L25 30L20 20Z" fill="white"/>
+                        <path d="M22 25H28L25 30L22 25Z" fill="#4f46e5"/>
+                    </svg>
+                    <div class="logo-text">Edu<span>Manager</span></div>
+                </div>
+                
+                <h2>Welcome Back!</h2>
+                <p class="subtitle">Sign in to continue to your account</p>
+                
+                <form id="loginFormElement">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="username" class="input-field" placeholder="Enter your username" required>
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" class="input-field" placeholder="Enter your password" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <div class="remember">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                </form>
+                
+                <div class="social-login">
+                    <p class="social-text">Or sign in with</p>
+                    <div class="social-buttons">
+                        <div class="social-btn google">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="social-btn apple">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="toggle-link">
+                    <p>Don't have an account? <a id="showSignup">Create Account</a></p>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="form-container" id="signupForm">
+                <div class="logo-container">
+                    <svg class="logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="50" height="50" rx="10" fill="#4f46e5"/>
+                        <path d="M15 15H35V35H15V15Z" stroke="white" stroke-width="2"/>
+                        <path d="M20 20H30L25 30L20 20Z" fill="white"/>
+                        <path d="M22 25H28L25 30L22 25Z" fill="#4f46e5"/>
+                    </svg>
+                    <div class="logo-text">Edu<span>Manager</span></div>
+                </div>
+                
+                <h2>Create Account</h2>
+                <p class="subtitle">Join our platform to manage your educational journey</p>
+                
+                <form id="signupFormElement">
+                    <div class="input-group">
+                        <label for="fullname">Full Name</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="fullname" class="input-field" placeholder="Enter your full name" required>
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email" class="input-field" placeholder="Enter your email" required>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="newUsername">Username</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="newUsername" class="input-field" placeholder="Choose a username" required>
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="newPassword">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="newPassword" class="input-field" placeholder="Create a password" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="confirmPassword" class="input-field" placeholder="Confirm your password" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+                
+                <div class="toggle-link">
+                    <p>Already have an account? <a id="showLogin">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginForm = document.getElementById('loginFormElement');
+        const signupForm = document.getElementById('signupFormElement');
+        const loginFormContainer = document.getElementById('loginForm');
+        const signupFormContainer = document.getElementById('signupForm');
+        const showSignupBtn = document.getElementById('showSignup');
+        const showLoginBtn = document.getElementById('showLogin');
+
+        // Toggle between login and signup forms
+        showSignupBtn.addEventListener('click', function() {
+            loginFormContainer.classList.add('inactive');
+            signupFormContainer.classList.add('active');
+        });
+
+        showLoginBtn.addEventListener('click', function() {
+            signupFormContainer.classList.remove('active');
+            loginFormContainer.classList.remove('inactive');
+        });
+
+        // Login Form Handling
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            // Validate inputs
+            if (!username || !password) {
+                showAlert('Please fill in all fields', 'error');
+                return;
+            }
+            
+            // Here you would typically send a request to your server
+            // For demo purposes, we'll just simulate a successful login
+            console.log('Login attempt:', { username, password, remember });
+            
+            // Simulate successful login
+            showAlert('Login successful! Redirecting...', 'success');
+            
+            // Redirect to dashboard after a short delay
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+
+        // Signup Form Handling
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('newUsername').value;
+            const password = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+            
+            // Validate inputs
+            if (!fullname || !email || !username || !password || !confirmPassword) {
+                showAlert('Please fill in all fields', 'error');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showAlert('Passwords do not match', 'error');
+                return;
+            }
+            
+            if (!terms) {
+                showAlert('Please agree to the Terms of Service', 'error');
+                return;
+            }
+            
+            // Validate email format
+            if (!isValidEmail(email)) {
+                showAlert('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Here you would typically send a request to your server
+            // For demo purposes, we'll just simulate a successful signup
+            console.log('Signup attempt:', { fullname, email, username, password, terms });
+            
+            // Simulate successful signup
+            showAlert('Account created successfully!', 'success');
+            
+            // Switch to login form after successful signup
+            setTimeout(() => {
+                signupFormContainer.classList.remove('active');
+                loginFormContainer.classList.remove('inactive');
+                // Clear the signup form
+                signupForm.reset();
+            }, 1500);
+        });
+
+        // Helper Functions
+        function showAlert(message, type) {
+            // Check if alert container exists, if not create it
+            let alertContainer = document.querySelector('.alert-container');
+            
+            if (!alertContainer) {
+                alertContainer = document.createElement('div');
+                alertContainer.className = 'alert-container';
+                document.body.appendChild(alertContainer);
+            }
+            
+            // Create alert element
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            
+            // Add icon based on alert type
+            let icon = '';
+            if (type === 'success') {
+                icon = '<i class="fas fa-check-circle"></i>';
+            } else if (type === 'error') {
+                icon = '<i class="fas fa-exclamation-circle"></i>';
+            }
+            
+            alert.innerHTML = `${icon}${message}`;
+            
+            // Add alert to container
+            alertContainer.appendChild(alert);
+            
+            // Remove alert after 3 seconds
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                alert.style.transform = 'translateX(100%)';
+                alert.style.transition = 'opacity 0.5s, transform 0.5s';
+                
+                setTimeout(() => {
+                    alertContainer.removeChild(alert);
+                    
+                    // Remove container if no alerts left
+                    if (alertContainer.children.length === 0) {
+                        document.body.removeChild(alertContainer);
+                    }
+                }, 500);
+            }, 3000);
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Create floating background shapes animation
+        document.querySelectorAll('.shape').forEach(shape => {
+            // Random animation duration between 15-30s
+            const duration = Math.random() * 15 + 15;
+            // Random animation delay
+            const delay = Math.random() * 5;
+            
+            shape.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        });
+    </script>
+</body>
+</html>
