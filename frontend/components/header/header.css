@@ -1,0 +1,54 @@
+.topbar {
+    background-color: #E4E6E7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.my-search {
+    padding: 8px 16px;
+    border: 0.5px solid #000;
+    border-radius: 20px;
+    width: 250px;
+    background-color: E4E6E7;
+    font-style: poppins-italic;
+    outline: none;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info .text {
+    text-align: right;
+    line-height: 1;
+}
+
+.user-info .name {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    color: #333;
+}
+
+.user-info .role {
+    font-size: 12px;
+    color: #888;
+    margin: 0;
+}
+
+.avatar {
+    background-color: #c8105c;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
