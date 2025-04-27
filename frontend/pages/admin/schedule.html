@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Schedule</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../components/sidebar/admin_sidebar/admin_sidebar.css">
+    <link rel="stylesheet" href="/frontend/components/header/header.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../style/admin_schedule.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background: #f6fafd; font-family: 'Poppins', sans-serif;">
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+    <script>
+        fetch('/frontend/components/sidebar/admin_sidebar/admin_sidebar.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('sidebar').innerHTML = html;
+                // Highlight schedule
+                const scheduleLink = document.querySelector('#sidebar .sidebar-link.schedule');
+                if (scheduleLink) scheduleLink.classList.add('active');
+            });
+    </script>
+
+    <div class="flex-grow-1">
+        <!-- Header -->
+        <div id="header"></div>
+        <script>
+            fetch('/frontend/components/header/header.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById("header").innerHTML = html;
+                })
+        </script>
+
+        <!-- Main Content -->
+        <div class="container py-4">
+            <!-- Schedule Card for Class 1 -->
+            <div class="schedule-card mb-4 position-relative">
+                <div class="schedule-card-header d-flex align-items-center justify-content-between">
+                    <span class="fw-semibold fs-5">Schedule for Class 1</span>
+                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                </div>
+                <div class="table-responsive">
+                    <table class="table schedule-table mb-0">
+                        <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Period 1</th>
+                            <th>Period 2</th>
+                            <th>Period 3</th>
+                            <th>Period 4</th>
+                            <th>Period 5</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mon</td>
+                            <td><select class="form-select"><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Amharic</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Tue</td>
+                            <td><select class="form-select"><option>Amharic</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>Maths</option><option>English</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Wed</td>
+                            <td><select class="form-select"><option>Maths</option><option>English</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>English</option><option>Maths</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>ማህበራዊ ሳይንስ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>sport</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Thu</td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Bio</option><option>English</option><option>Amharic</option><option>Maths</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Physics</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Fri</td>
+                            <td><select class="form-select"><option>Maths</option><option>English</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Che</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Physics</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Schedule Card for Class 2 (copy for demo) -->
+            <div class="schedule-card mb-4 position-relative">
+                <div class="schedule-card-header d-flex align-items-center justify-content-between">
+                    <span class="fw-semibold fs-5">Schedule for Class 2</span>
+                    <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                </div>
+                <div class="table-responsive">
+                    <table class="table schedule-table mb-0">
+                        <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Period 1</th>
+                            <th>Period 2</th>
+                            <th>Period 3</th>
+                            <th>Period 4</th>
+                            <th>Period 5</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Mon</td>
+                            <td><select class="form-select"><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Amharic</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Tue</td>
+                            <td><select class="form-select"><option>Amharic</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>Maths</option><option>English</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Wed</td>
+                            <td><select class="form-select"><option>Maths</option><option>English</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>English</option><option>Maths</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>ማህበራዊ ሳይንስ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>sport</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Thu</td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Bio</option><option>English</option><option>Amharic</option><option>Maths</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Break</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option></select></td>
+                            <td><select class="form-select"><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Physics</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Fri</td>
+                            <td><select class="form-select"><option>Maths</option><option>English</option><option>Amharic</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ</option><option>English</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Che</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>አማርኛ, እንግሊዝኛ</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Physics</option><option>Che</option><option>Break</option></select></td>
+                            <td><select class="form-select"><option>Physics</option><option>English</option><option>Amharic</option><option>Maths</option><option>Bio</option><option>Che</option><option>Break</option></select></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

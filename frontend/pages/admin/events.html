@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../components/sidebar/admin_sidebar/admin_sidebar.css">
+    <link rel="stylesheet" href="/frontend/components/header/header.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../style/admin_events.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background: #f9f9ea; font-family: 'Poppins', sans-serif;">
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+    <script>
+        fetch('/frontend/components/sidebar/admin_sidebar/admin_sidebar.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('sidebar').innerHTML = html;
+                // Highlight events
+                const eventsLink = document.querySelector('#sidebar .sidebar-link.events');
+                if (eventsLink) eventsLink.classList.add('active');
+            });
+    </script>
+
+    <div class="flex-grow-1">
+        <!-- Header -->
+        <div id="header"></div>
+        <script>
+            fetch('/frontend/components/header/header.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById("header").innerHTML = html;
+                })
+        </script>
+
+        <!-- Main Content -->
+        <div class="container py-4">
+            <h2 class="text-center mb-4 fw-bold event-title-outlined">Event Calendar</h2>
+            <div class="row justify-content-start align-items-start">
+                <!-- Calendar Section -->
+                <div class="col-md-4 d-flex flex-column align-items-center">
+                    <div class="calendar-container p-3 mb-3" style="width: 270px;">
+                        <label for="event-date" class="form-label fw-semibold mb-2" style="color:#444;">Choose Date</label>
+                        <input type="date" id="event-date" class="form-control real-calendar" style="width: 100%; min-width: 0; max-width: 200px; margin: 0 auto; text-align: center;" />
+                    </div>
+                </div>
+                <!-- Event Input and List Section -->
+                <div class="col-md-8">
+                    <div class="event-input-container mb-4">
+                        <textarea class="form-control event-textarea mb-3" rows="4" placeholder="Enter event details..."></textarea>
+                        <div class="text-end">
+                            <button class="btn btn-primary save-event-btn">Save Event</button>
+                        </div>
+                    </div>
+                    <!-- Scheduled Events List -->
+                    <div class="scheduled-events mt-2">
+                        <h5 class="mb-3 fw-semibold" style="color:#2d4c1e;">Scheduled Events</h5>
+                        <ul class="event-list ps-3 mb-0">
+                            <li class="event-item mb-2">
+                                <span class="event-date">2025-01-17:</span> <span class="event-name">mid exam</span> <a href="#" class="delete-event ms-2">Delete</a>
+                            </li>
+                            <li class="event-item mb-2">
+                                <span class="event-date">2025-02-14:</span> <span class="event-name">Schudele</span> <a href="#" class="delete-event ms-2">Delete</a>
+                            </li>
+                            <li class="event-item mb-2">
+                                <span class="event-date">2025-02-21:</span> <span class="event-name">Yy</span> <a href="#" class="delete-event ms-2">Delete</a>
+                            </li>
+                            <li class="event-item mb-2">
+                                <span class="event-date">2025-04-10:</span> <span class="event-name">Final exam</span> <a href="#" class="delete-event ms-2">Delete</a>
+                            </li>
+                            <li class="event-item mb-2">
+                                <span class="event-date">2025-04-15:</span> <span class="event-name">Test 2</span> <a href="#" class="delete-event ms-2">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

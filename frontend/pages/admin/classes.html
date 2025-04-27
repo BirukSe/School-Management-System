@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Classes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../components/sidebar/admin_sidebar/admin_sidebar.css">
+    <link rel="stylesheet" href="/frontend/components/header/header.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../style/admin_classes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body style="background: #f9f9ea; font-family: 'Poppins', sans-serif;">
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+    <script>
+        fetch('/frontend/components/sidebar/admin_sidebar/admin_sidebar.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('sidebar').innerHTML = html;
+                // Highlight class
+                const classLink = document.querySelector('#sidebar .sidebar-link.class');
+                if (classLink) classLink.classList.add('active');
+            });
+    </script>
+
+    <div class="flex-grow-1">
+        <!-- Header -->
+        <div id="header"></div>
+        <script>
+            fetch('/frontend/components/header/header.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById("header").innerHTML = html;
+                })
+        </script>
+
+        <!-- Main Content -->
+        <div class="container py-4">
+            <h2 class="mb-4 fw-bold class-title-outlined">All Classes</h2>
+            <div class="table-responsive">
+                <table class="table class-table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-success">Grade</th>
+                            <th class="text-success">Male Students</th>
+                            <th class="text-success">Female Students</th>
+                            <th class="text-success">Total Students</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="class-row">
+                            <td>Grade 1</td><td>0</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr class="class-row">
+                            <td>Grade 2</td><td>1</td><td>0</td><td>1</td>
+                        </tr>
+                        <tr class="class-row">
+                            <td>Grade 3</td><td>0</td><td>0</td><td>0</td>
+                        </tr>
+                        <tr class="class-row">
+                            <td>Grade 4</td><td>0</td><td>1</td><td>1</td>
+                        </tr>
+                        <tr class="class-row">
+                            <td>Grade 5</td><td>0</td><td>0</td><td>0</td>
+                        </tr>
+                        <tr class="class-row">
+                            <td>Grade 6</td><td>0</td><td>0</td><td>0</td>
+                        </tr>
+                        <tr class="class-row">
+                            <td>Grade 7</td><td>2</td><td>2</td><td>4</td>
+                        </tr>
+                        <tr class="class-row">
+                            <td>Grade 8</td><td>3</td><td>0</td><td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html> 
